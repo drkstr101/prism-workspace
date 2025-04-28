@@ -1,0 +1,31 @@
+{
+  "recommendations": [
+    "bradlc.vscode-tailwindcss",
+    "christian-kohler.path-intellisense",
+    "davidanson.vscode-markdownlint",
+    "dbaeumer.vscode-eslint",
+    "dotjoshjohnson.xml",
+    "editorconfig.editorconfig",
+    "esbenp.prettier-vscode",
+    "formulahendry.auto-close-tag",
+    "hbenl.vscode-test-explorer",
+    "lorankloeze.ruby-rubocop-revived",
+    "mikestead.dotenv",
+    "ms-kubernetes-tools.vscode-kubernetes-tools",
+    "ms-playwright.playwright",
+    "ms-vscode.live-server",
+    "ms-vscode.makefile-tools",
+    "ms-vscode.test-adapter-converter",
+    "naumovs.color-highlight",
+    "nrwl.angular-console",
+    "streetsidesoftware.code-spell-checker",
+    "stylelint.vscode-stylelint",
+    "timonwong.shellcheck",
+    "vitest.explorer",
+    "wmaurer.change-case"
+  ],
+  "unwantedRecommendations": [
+    "rubocop.vscode-rubocop",
+    "Shopify.ruby-lsp"
+  ]
+}
