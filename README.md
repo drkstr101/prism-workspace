@@ -1,2 +1,3 @@
 # prism-workspace
-Project Workspace for APS Prism
+
+> Experimental prism development environment
