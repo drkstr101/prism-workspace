@@ -1,43 +1,45 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/ubuntu
 {
-	"name": "Prism Workspace",
-	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"image": "mcr.microsoft.com/devcontainers/base:noble",
-    // Features to add to the dev container. More info: https://containers.dev/features.
-	"features": {
+  "name": "Prism Workspace",
+  // More info: https://containers.dev/guide/dockerfile
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "devcontainer",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  // Features to add to the dev container. More info: https://containers.dev/features.
+  "features": {
     // https://github.com/devcontainers/features/blob/main/src/common-utils/README.md
-		"ghcr.io/devcontainers/features/common-utils:2": {
-			"installZsh": true,
-			"configureZshAsDefaultShell": true,
-			"installOhMyZsh": true,
-			"installOhMyZshConfig": true,
-			"upgradePackages": true,
-			"nonFreePackages": true,
-			"username": "vscode",
-			"userUid": "automatic",
-			"userGid": "automatic"
-		},
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": true,
+      "configureZshAsDefaultShell": true,
+      "installOhMyZsh": true,
+      "installOhMyZshConfig": true,
+      "upgradePackages": true,
+      "nonFreePackages": true,
+      "username": "vscode",
+      "userUid": "automatic",
+      "userGid": "automatic"
+    },
     // https://github.com/devcontainers/features/blob/main/src/desktop-lite/README.md
-		"ghcr.io/devcontainers/features/desktop-lite:1": {
-			"version": "latest",
-			"noVncVersion": "1.2.0",
-			"password": "noPassword",
-			"webPort": "6080",
-			"vncPort": "5901"
-		},
+    "ghcr.io/devcontainers/features/desktop-lite:1": {
+      "version": "latest",
+      "noVncVersion": "1.2.0",
+      "password": "noPassword",
+      "webPort": "6080",
+      "vncPort": "5901"
+    },
     // https://github.com/devcontainers/features/blob/main/src/docker-in-docker/README.md
-		"ghcr.io/devcontainers/features/docker-in-docker:2": {
-			"version": "latest",
-      "moby": false,
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+      "version": "latest",
+      "moby": true,
       "mobyBuildxVersion": "latest",
       "dockerDashComposeVersion": "latest",
-			"azureDnsAutoDetection": false,
-			"installDockerBuildx": true,
+      "azureDnsAutoDetection": false,
+      "installDockerBuildx": true,
       "dockerBuildxVersion": "latest",
       "dockerComposeVersion": "latest",
-			"installDockerComposeSwitch": true
-		},
+      "installDockerComposeSwitch": true
+    },
     // https://github.com/devcontainers/features/blob/main/src/git/README.md
     "ghcr.io/devcontainers/features/git:1": {
       "version": "latest",
@@ -49,18 +51,18 @@
       "installDirectlyFromGitHubRelease": true
     },
     // https://github.com/devcontainers/features/blob/main/src/java/README.md
-		"ghcr.io/devcontainers/features/java:1": {
-			"version": "23",
-			"jdkDistro": "graal",
-			"installGradle": true,
-			"gradleVersion": "latest",
-			"installMaven": true,
-			"mavenVersion": "latest",
-			"installAnt": true,
-			"antVersion": "latest",
-			"installGroovy": true,
-			"groovyVersion": "latest"
-		},
+    "ghcr.io/devcontainers/features/java:1": {
+      "version": "23",
+      "jdkDistro": "graal",
+      "installGradle": true,
+      "gradleVersion": "latest",
+      "installMaven": true,
+      "mavenVersion": "latest",
+      "installAnt": true,
+      "antVersion": "latest",
+      "installGroovy": true,
+      "groovyVersion": "latest"
+    },
     // https://github.com/devcontainers/features/blob/main/src/kubectl-helm-minikube/README.md
     "ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {
       "version": "latest",
@@ -68,42 +70,55 @@
       "installMinikube": false
     },
     // https://github.com/devcontainers/features/blob/main/src/node/README.md
-		"ghcr.io/devcontainers/features/node:1": {
-			"version": "lts",
-			"nodeGypDependencies": true,
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "lts",
+      "nodeGypDependencies": true,
       "nvmInstallPath": "/home/vscode/.nvm",
-			"pnpmVersion": "latest",
-			"nvmVersion": "latest",
+      "pnpmVersion": "latest",
+      "nvmVersion": "latest",
       "installYarnUsingApt": false
-		},
+    },
     // https://github.com/devcontainers/features/blob/main/src/ruby/README.md
-		"ghcr.io/devcontainers/features/ruby:1": {
+    "ghcr.io/devcontainers/features/ruby:1": {
       "version": "latest"
     },
     // https://github.com/devcontainers/features/blob/main/src/sshd/README.md
     "ghcr.io/devcontainers/features/sshd:1": {
       "version": "latest"
     }
-	},
-
-	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	// "forwardPorts": [],
-
-	// Use 'postCreateCommand' to run commands after the container is created.
-	// "postCreateCommand": "uname -a",
-
-	// Configure tool-specific properties.
-	// "customizations": {},
-
-	// More info: https://aka.ms/dev-containers-non-root.
-	"remoteUser": "vscode",
-	"customizations": {
-		"vscode": {
-			"extensions": [
+  },
+  // Use 'forwardPorts' to make a list of ports inside the container available locally.
+  // "forwardPorts": [],
+  // Use 'postCreateCommand' to run commands after the container is created.
+  // "postCreateCommand": "uname -a",
+  // Configure tool-specific properties.
+  // "customizations": {},
+  // More info: https://aka.ms/dev-containers-non-root.
+  "remoteUser": "vscode",
+  "containerEnv": {
+    // allow for run-time configuration of hibernate properties
+    "GITHUB_USER": "${localEnv:GITHUB_USER}",
+    "GITHUB_TOKEN": "${localEnv:GITHUB_TOKEN}",
+    "PRISM": "/workspaces/prism-workspace/projects",
+    "TEST_DB_HOST": "db",
+    "AWS_PROFILE": "899889257541_AdministratorAccess",
+    "AWS_REGION": "us-east-1",
+    "SPEC_OPTS": "--color --format doc",
+    // used for internal Rails app auth (typically from ALB)
+    // https://github.com/APSPhysics/eop_rails3/blob/67f030b/lib/eop_rails/internal/authentication.rb#L50-L51
+    "PRISM_DEV_USERNAME": "${localEnv:USER}",
+    "OUTCORR_LETTERS_DIR": "/workspaces/outcorr-letters"
+  },
+  "runServices": [
+    "db"
+  ],
+  "customizations": {
+    "vscode": {
+      "extensions": [
         "vscjava.vscode-java-pack",
-				"walkme.Ruby-extension-pack",
+        "walkme.Ruby-extension-pack",
         "LoranKloeze.ruby-rubocop-revived"
-			]
-		}
-	}
+      ]
+    }
+  }
 }
