@@ -1,8 +1,6 @@
 FROM mcr.microsoft.com/devcontainers/base:noble
 
-ENV DEBIAN_FRONTEND=noninteractive
-
-RUN apt-get update && apt-get install -y \
+RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -y \
   autoconf \
   build-essential \
   libdb-dev \
