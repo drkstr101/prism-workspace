@@ -1,0 +1,21 @@
+
+plugins {
+  // Apply the base plugin to add basic life-cycle support
+  id 'base'
+
+  // Apply the project-report plugin to generate a report about the project.
+  id 'project-report'
+
+  // Apply the distribution plugin to create distributions for the project.
+  // id 'distribution'
+}
+
+projectReport {
+  mustRunAfter tasks.named('clean')
+}
+
+assemble {
+  dependsOn tasks.named('projectReport')
+}
+
+defaultTasks = ['assemble']
