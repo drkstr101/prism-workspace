@@ -1,0 +1,8 @@
+.idea
+
+config/certs/*
+!config/certs/.gitkeep
+
+.env
+.env.*
+!.env.example
