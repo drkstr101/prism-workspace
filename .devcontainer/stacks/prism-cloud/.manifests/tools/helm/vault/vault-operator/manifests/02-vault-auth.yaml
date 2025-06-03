@@ -1,0 +1,15 @@
+---
+apiVersion: secrets.hashicorp.com/v1beta1
+kind: VaultAuth
+metadata:
+  name: vault-auth
+  namespace: vault-app
+spec:
+  method: kubernetes
+  mount: local
+  kubernetes:
+    role: demo # replace with the dedicated vault role
+    serviceAccount: vault-operator-account
+    audiences:
+      - vault
+  vaultConnectionRef: vault-connection
