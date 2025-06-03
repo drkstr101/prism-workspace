@@ -1,0 +1,55 @@
+# @see https://kevinquillen.com/setting-traefik-2-local-ssl-certificate
+services:
+  traefik:
+    container_name: ${STACK}-traefik
+    image: traefik:v3.2
+    restart: always
+    depends_on:
+      tls:
+        condition: service_completed_successfully
+    command:
+      - --api.insecure=true
+      - --accesslog=true
+      - --log.level=DEBUG
+      - --providers.docker=true
+      - --providers.docker.exposedbydefault=false
+      - --providers.file
+      - --providers.file.directory=/etc/traefik/dynamic_conf
+      - --entrypoints.web.address=:80
+      - --entrypoints.websecure.address=:443
+      - --entrypoints.web.http.redirections.entrypoint.to=websecure
+      - --entrypoints.web.http.redirections.entrypoint.scheme=https
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./config/certs:/certs:ro
+      - ./config/traefik/tls.yaml:/etc/traefik/dynamic_conf/tls.yaml:ro
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=${TRAEFIK_NETWORK}
+      - traefik.http.routers.${STACK}-traefik-https.rule=Host(`dashboard.$BASE_URL`)
+      - traefik.http.routers.${STACK}-traefik-https.entrypoints=websecure
+      - traefik.http.routers.${STACK}-traefik-https.tls=true
+      - traefik.http.routers.${STACK}-traefik-https.service=api@internal
+      - traefik.http.services.${STACK}-traefik-loadbalancer.loadbalancer.server.port=8080
+    networks:
+      - prism-next
+
+  ## todo: create dynamic script to generate certs from text file contains a list of domains
+  ## https://hub.docker.com/r/bitnami/schema-registry
+  tls:
+    image: ghcr.io/devgine/selfsigned-certificate:1.0.0
+    command:
+      - -d
+      - ${BASE_URL}
+      - -d
+      - k3s.localhost
+    volumes:
+      - ./config/certs:/certs
+
+networks:
+  prism-next:
+    external: true
+    name: ${TRAEFIK_NETWORK}
