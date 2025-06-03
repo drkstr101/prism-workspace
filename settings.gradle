@@ -17,3 +17,6 @@ plugins {
 }
 
 rootProject.name = 'prism'
+
+include ':stacks:k3s'
+include ':stacks:proxy'
