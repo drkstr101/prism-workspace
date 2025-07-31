@@ -18,5 +18,15 @@ plugins {
 
 rootProject.name = 'prism'
 
-include ':stacks:k3s'
-include ':stacks:proxy'
+def includeProject(String path) {
+    def name = path.split(':').last()
+    include(path)
+    project(path).name = name
+    project(path).projectDir = file("${rootProject.projectDir}/projects/${path.split(':').join('/')}")
+}
+
+includeProject(':prism-db')
+includeProject(':prism-ui')
+includeProject(':eop-hibernate')
+includeProject(':eop-hibernate:main')
+includeProject(':eop-hibernate:test')
