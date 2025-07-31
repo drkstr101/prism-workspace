@@ -25,6 +25,9 @@ def includeProject(String path) {
     project(path).projectDir = file("${rootProject.projectDir}/projects/${path.split(':').join('/')}")
 }
 
+include(':dev-stack:cluster')
+include(':dev-stack:database')
+include(':dev-stack:proxy')
 includeProject(':prism-db')
 includeProject(':prism-ui')
 includeProject(':eop-hibernate')
